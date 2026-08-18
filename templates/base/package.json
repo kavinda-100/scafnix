@@ -1,0 +1,18 @@
+{
+  "name": "{{project_name}}",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A monorepo project",
+  "author": {
+    "name": "Your Name",
+    "email": "your.email@example.com",
+    "url": "https://yourdomain.com"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "pnpm --parallel --filter \"./apps/*\" start",
+    "predev": "pnpm --filter \"./packages/*\" build",
+    "dev": "pnpm --parallel --filter \"./apps/*\" dev",
+    "build": "pnpm --filter \"./packages/*\" build && pnpm --filter \"./apps/*\" build"
+  }
+}

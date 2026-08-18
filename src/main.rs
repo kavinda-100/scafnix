@@ -1,19 +1,19 @@
-use std::{env, fs, path::PathBuf};
+use include_dir::{Dir, include_dir};
+use std::{env, path::PathBuf};
 
-const SERVER_TEMPLATE: &str = include_str!("../templates/server.ts");
+mod template;
+use template::extractor::extract_dir;
+
+static BASE_TEMPLATE: Dir<'_> = include_dir!("$CARGO_MANIFEST_DIR/templates/base");
 
 fn main() -> anyhow::Result<()> {
     let project_name = env::args().nth(1).unwrap_or_else(|| "demo".to_string());
 
-    let project_path = PathBuf::from(&project_name);
+    let destination = PathBuf::from(&project_name);
 
-    fs::create_dir_all(&project_path)?;
+    extract_dir(&BASE_TEMPLATE, &destination)?;
 
-    let server_path = project_path.join("server.ts");
-
-    fs::write(&server_path, SERVER_TEMPLATE)?;
-
-    println!("Created {}", server_path.display());
+    println!("Created {}", destination.display());
 
     Ok(())
 }
