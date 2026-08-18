@@ -1,0 +1,20 @@
+[package]
+name = "Scafnix"
+version = "0.1.0"
+edition = "2024"
+authors = ["Kavinda Rathnayake <kavindarathnayake100@gmail.com>"]
+description = "A CLI tools for scaffolding projects with ease."
+readme = "README.md"
+repository = "https://github.com/kavinda-100/Scafnix"
+homepage = "https://github.com/kavinda-100/Scafnix"
+license = "MIT"
+keywords = ["cli", "developer-tools","rust", "scaffolding", "project-generator"]
+categories = ["command-line-utilities", "development-tools"]
+
+[dependencies]
+anyhow = "1.0.104"
+colored = "3.1.1"
+indicatif = "0.18.6"
+inquire = "0.9.4"
+serde = "1.0.229"
+serde_json = "1.0.151"
