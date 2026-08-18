@@ -1,18 +1,17 @@
-use include_dir::{Dir, include_dir};
-
 use crate::{
     config::project::ProjectConfig,
-    template::{extractor::extract_dir, renderer::TemplateContext},
+    generator::{base::generate_base, package_manager::generate_package_manager},
+    template::renderer::TemplateContext,
 };
-
-static BASE_TEMPLATE: Dir<'_> = include_dir!("$CARGO_MANIFEST_DIR/templates/base");
 
 pub fn generate_project(config: &ProjectConfig) -> anyhow::Result<()> {
     let context = TemplateContext {
         project_name: config.name.clone(),
     };
 
-    extract_dir(&BASE_TEMPLATE, &config.destination, &context)?;
+    generate_base(config, &context)?;
+
+    generate_package_manager(config, &context)?;
 
     Ok(())
 }

@@ -2,17 +2,34 @@
   "name": "{{project_name}}",
   "private": true,
   "version": "0.1.0",
-  "description": "A monorepo project",
-  "author": {
-    "name": "Your Name",
-    "email": "your.email@example.com",
-    "url": "https://yourdomain.com"
-  },
+  "description": "A TypeScript backend monorepo",
   "license": "MIT",
+  "keywords": [
+    "monorepo",
+    "typescript",
+    "backend"
+  ],
   "scripts": {
-    "start": "pnpm --parallel --filter \"./apps/*\" start",
-    "predev": "pnpm --filter \"./packages/*\" build",
-    "dev": "pnpm --parallel --filter \"./apps/*\" dev",
-    "build": "pnpm --filter \"./packages/*\" build && pnpm --filter \"./apps/*\" build"
+    "start": "{{start_command}}",
+    "predev": "{{predev_command}}",
+    "dev": "{{dev_command}}",
+    "build": "{{build_command}}",
+    "db:generate": "{{db_generate_command}}",
+    "db:push": "{{db_push_command}}",
+    "db:studio": "{{db_studio_command}}",
+    "db:reset": "{{db_reset_command}}",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.1.2",
+    "eslint": "^10.8.0",
+    "prettier": "^3.9.6",
+    "ts-add-js-extension": "^1.6.6",
+    "typescript": "^6.0.0",
+    "typescript-eslint": "^8.65.0"
   }
 }

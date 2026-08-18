@@ -1,0 +1,11 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+allowBuilds:
+  "@prisma/engines": true
+  esbuild: true
+  fs-xattr: true
+  macos-alias: true
+  prisma: true
+  unrs-resolver: true

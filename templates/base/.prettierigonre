@@ -1,0 +1,12 @@
+node_modules
+dist
+.pnpm-store
+*.buildinfo
+.tsbuildinfo
+generated
+**/generated/**
+**/.vite/**
+.md
+
+
+apps/ui/src/routeTree.gen.ts
