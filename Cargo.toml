@@ -1,5 +1,5 @@
 [package]
-name = "Scafnix"
+name = "scafnix"
 version = "0.1.0"
 edition = "2024"
 authors = ["Kavinda Rathnayake <kavindarathnayake100@gmail.com>"]
