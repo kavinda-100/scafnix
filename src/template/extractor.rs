@@ -2,7 +2,13 @@ use std::{fs, path::Path};
 
 use include_dir::Dir;
 
-pub fn extract_dir(dir: &Dir<'_>, destination: &Path) -> anyhow::Result<()> {
+use super::renderer::{TemplateContext, render};
+
+pub fn extract_dir(
+    dir: &Dir<'_>,
+    destination: &Path,
+    context: &TemplateContext,
+) -> anyhow::Result<()> {
     // Create the destination directory if it doesn't exist
     fs::create_dir_all(destination)?;
 
@@ -17,12 +23,20 @@ pub fn extract_dir(dir: &Dir<'_>, destination: &Path) -> anyhow::Result<()> {
         }
 
         // Write the file contents to the output path
-        fs::write(output_path, file.contents())?;
+        match std::str::from_utf8(file.contents()) {
+            Ok(content) => {
+                let rendered = render(content, context);
+                fs::write(&output_path, rendered)?;
+            }
+            Err(_) => {
+                fs::write(&output_path, file.contents())?;
+            }
+        }
     }
 
     // Recursively extract subdirectories
     for child_dir in dir.dirs() {
-        extract_dir(child_dir, destination)?;
+        extract_dir(child_dir, destination, context)?;
     }
 
     Ok(())
