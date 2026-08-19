@@ -26,7 +26,7 @@
     "dotenv": "^17.4.2",
     "find-config": "^1.0.0",
     "pg": "^8.22.0",
-    "@{{project_name}}/schemas": "workspace:*"
+    "@{{project_name}}/schema": "workspace:*"
   },
   "devDependencies": {
     "@types/find-config": "^1.0.4",

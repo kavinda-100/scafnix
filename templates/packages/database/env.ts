@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import findConfig from "find-config";
-import { DatabaseEnvSchema } from "@{{project_name}}/schemas";
+import { DatabaseEnvSchema } from "@{{project_name}}/schema";
 
 // Automatically traverse upward until the root monorepo .env file is found
 const envPath = findConfig(".env");
