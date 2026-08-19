@@ -1,6 +1,9 @@
 use crate::{
     config::project::ProjectConfig,
-    generator::{base::generate_base, package_manager::generate_package_manager},
+    generator::{
+        base::generate_base, package_manager::generate_package_manager,
+        packages::config::generate_config_package,
+    },
     template::renderer::TemplateContext,
 };
 
@@ -12,6 +15,8 @@ pub fn generate_project(config: &ProjectConfig) -> anyhow::Result<()> {
     generate_base(config, &context)?;
 
     generate_package_manager(config, &context)?;
+
+    generate_config_package(config, &context)?;
 
     Ok(())
 }
