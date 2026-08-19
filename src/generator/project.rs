@@ -3,7 +3,10 @@ use crate::{
     generator::{
         base::generate_base,
         package_manager::generate_package_manager,
-        packages::{config::generate_config_package, schema::generate_schema_package},
+        packages::{
+            config::generate_config_package, databse::generate_database_package,
+            schema::generate_schema_package,
+        },
     },
     template::renderer::TemplateContext,
 };
@@ -20,6 +23,8 @@ pub fn generate_project(config: &ProjectConfig) -> anyhow::Result<()> {
     generate_config_package(config, &context)?;
 
     generate_schema_package(config, &context)?;
+
+    generate_database_package(config, &context)?;
 
     Ok(())
 }

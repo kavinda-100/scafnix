@@ -4,7 +4,9 @@ mod config;
 mod generator;
 mod template;
 
-use config::{package_manager::PackageManager, project::ProjectConfig};
+use config::{
+    database_provider::DatabaseProvider, package_manager::PackageManager, project::ProjectConfig,
+};
 
 use generator::project::generate_project;
 
@@ -15,6 +17,7 @@ fn main() -> anyhow::Result<()> {
         name: project_name.clone(),
         destination: PathBuf::from(&project_name),
         package_manager: PackageManager::Pnpm,
+        database_provider: DatabaseProvider::Prisma,
     };
 
     generate_project(&config)?;
