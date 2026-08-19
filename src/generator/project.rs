@@ -8,6 +8,7 @@ use crate::{
             config::generate_config_package, databse::generate_database_package,
             schema::generate_schema_package,
         },
+        post_generation::{dependencies::install_dependencies, git::initialize_git},
     },
     template::renderer::TemplateContext,
 };
@@ -16,6 +17,8 @@ pub fn generate_project(config: &ProjectConfig) -> anyhow::Result<()> {
     let context = TemplateContext {
         project_name: config.name.clone(),
     };
+
+    // -- Generate project structure and files --
 
     generate_base(config, &context)?;
 
@@ -28,6 +31,17 @@ pub fn generate_project(config: &ProjectConfig) -> anyhow::Result<()> {
     generate_database_package(config, &context)?;
 
     generate_apps_api_framework(config, &context)?;
+
+    // -- Post-generation tasks --
+
+    // run before dependencies installation.
+    if config.initialize_git {
+        initialize_git(config)?;
+    }
+
+    if config.install_dependencies {
+        install_dependencies(config)?;
+    }
 
     Ok(())
 }

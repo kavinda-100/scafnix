@@ -2,4 +2,5 @@ pub mod apps;
 pub mod base;
 pub mod package_manager;
 pub mod packages;
+pub mod post_generation;
 pub mod project;

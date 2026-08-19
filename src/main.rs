@@ -1,6 +1,7 @@
 mod cli;
 mod config;
 mod generator;
+mod process;
 mod template;
 
 use generator::project::generate_project;

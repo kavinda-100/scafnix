@@ -15,6 +15,13 @@ impl PackageManager {
             Self::Bun => "bun",
         }
     }
+
+    pub fn install_args(&self) -> &'static [&'static str] {
+        match self {
+            Self::Pnpm => &["install"],
+            Self::Bun => &["install"],
+        }
+    }
 }
 
 impl fmt::Display for PackageManager {
