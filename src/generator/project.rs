@@ -8,7 +8,10 @@ use crate::{
             config::generate_config_package, databse::generate_database_package,
             schema::generate_schema_package,
         },
-        post_generation::{dependencies::install_dependencies, git::initialize_git},
+        post_generation::{
+            dependencies::{install_dependencies, upgrade_dependencies},
+            git::initialize_git,
+        },
     },
     template::renderer::TemplateContext,
 };
@@ -41,6 +44,7 @@ pub fn generate_project(config: &ProjectConfig) -> anyhow::Result<()> {
 
     if config.install_dependencies {
         install_dependencies(config)?;
+        upgrade_dependencies(config)?;
     }
 
     Ok(())

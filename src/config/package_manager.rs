@@ -22,6 +22,13 @@ impl PackageManager {
             Self::Bun => &["install"],
         }
     }
+
+    pub fn upgrade_args(&self) -> &'static [&'static str] {
+        match self {
+            Self::Pnpm => &["up", "--latest", "--recursive"],
+            Self::Bun => &["update", "--latest"],
+        }
+    }
 }
 
 impl fmt::Display for PackageManager {
