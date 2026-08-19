@@ -1,1 +1,3 @@
-console.log("{{project_name}} Schemas");
+export * from "zod";
+
+export * from "./src/env";
