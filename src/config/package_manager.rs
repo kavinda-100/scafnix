@@ -1,3 +1,5 @@
+use std::fmt;
+
 #[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub enum PackageManager {
@@ -11,6 +13,15 @@ impl PackageManager {
         match self {
             Self::Pnpm => "pnpm",
             Self::Bun => "bun",
+        }
+    }
+}
+
+impl fmt::Display for PackageManager {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::Pnpm => write!(f, "pnpm"),
+            Self::Bun => write!(f, "bun"),
         }
     }
 }

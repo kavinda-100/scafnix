@@ -1,26 +1,14 @@
-use std::{env, path::PathBuf};
-
+mod cli;
 mod config;
 mod generator;
 mod template;
 
-use config::{
-    api_framework::ApiFramework, database_provider::DatabaseProvider,
-    package_manager::PackageManager, project::ProjectConfig,
-};
-
 use generator::project::generate_project;
 
-fn main() -> anyhow::Result<()> {
-    let project_name = env::args().nth(1).unwrap_or_else(|| "demo".to_string());
+use crate::cli::prompts::collect_project_config;
 
-    let config = ProjectConfig {
-        name: project_name.clone(),
-        destination: PathBuf::from(&project_name),
-        package_manager: PackageManager::Pnpm,
-        api_framework: ApiFramework::Express,
-        database_provider: DatabaseProvider::Prisma,
-    };
+fn main() -> anyhow::Result<()> {
+    let config = collect_project_config()?;
 
     generate_project(&config)?;
 
