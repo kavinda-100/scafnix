@@ -13,4 +13,7 @@ export const ApiEnvSchema = z.object({
     .enum(["fatal", "error", "warn", "info", "debug", "trace"])
     .optional()
     .default("info"),
+  WEB_URL: z
+    .url({ error: "WEB_URL must be a valid URL" })
+    .default("http://localhost:3000"),
 });
