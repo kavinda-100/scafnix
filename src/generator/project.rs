@@ -1,6 +1,7 @@
 use crate::{
     config::project::ProjectConfig,
     generator::{
+        apps::api_framework::generate_apps_api_framework,
         base::generate_base,
         package_manager::generate_package_manager,
         packages::{
@@ -25,6 +26,8 @@ pub fn generate_project(config: &ProjectConfig) -> anyhow::Result<()> {
     generate_schema_package(config, &context)?;
 
     generate_database_package(config, &context)?;
+
+    generate_apps_api_framework(config, &context)?;
 
     Ok(())
 }

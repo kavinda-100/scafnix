@@ -1,3 +1,4 @@
+pub mod apps;
 pub mod base;
 pub mod package_manager;
 pub mod packages;
