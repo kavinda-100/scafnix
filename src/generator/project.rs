@@ -14,7 +14,7 @@ use crate::{
         },
     },
     template::renderer::TemplateContext,
-    ui::progressbar::progress_bar,
+    ui::seperater::print_separator,
 };
 
 pub fn generate_project(config: &ProjectConfig) -> anyhow::Result<()> {
@@ -56,13 +56,13 @@ pub fn generate_project(config: &ProjectConfig) -> anyhow::Result<()> {
 
     // run before dependencies installation.
     if config.initialize_git {
-        progress_bar("Initializing git");
+        print_separator(None);
 
         initialize_git(config)?;
     }
 
     if config.install_dependencies {
-        progress_bar("Installing dependencies");
+        print_separator(None);
 
         install_dependencies(config)?;
         upgrade_dependencies(config)?;

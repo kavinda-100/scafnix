@@ -21,7 +21,7 @@ fn main() -> anyhow::Result<()> {
 
     generate_project(&config)?;
 
-    print_separator(None);
+    print_separator(Some(true));
 
     print_last_message(&config);
 
