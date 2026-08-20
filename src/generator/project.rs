@@ -14,6 +14,7 @@ use crate::{
         },
     },
     template::renderer::TemplateContext,
+    ui::seperater::print_separator,
 };
 
 pub fn generate_project(config: &ProjectConfig) -> anyhow::Result<()> {
@@ -56,6 +57,8 @@ pub fn generate_project(config: &ProjectConfig) -> anyhow::Result<()> {
     // run before dependencies installation.
     if config.initialize_git {
         initialize_git(config)?;
+
+        print_separator();
     }
 
     if config.install_dependencies {
