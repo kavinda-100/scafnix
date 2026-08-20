@@ -1,0 +1,35 @@
+{
+  "name": "@{{project_name}}/database",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio",
+    "build": "drizzle-kit generate && tsc -p tsconfig.json --noEmit false && ts-add-js-extension --dir=dist"
+  },
+  "dependencies": {
+    "drizzle-orm": "1.0.0-rc.4",
+    "pg": "^8.23.0",
+    "dotenv": "^17.4.2",
+    "find-config": "^1.0.0",
+    "@{{project_name}}/schema": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/find-config": "^1.0.4",
+    "tsx": "^4.23.1",
+    "@types/pg": "^8.23.1",
+    "drizzle-kit": "1.0.0-rc.4"
+  }
+}

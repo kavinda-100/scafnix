@@ -17,7 +17,7 @@ pub fn generate_package_manager(
         }
 
         PackageManager::Bun => {
-            // implement Bun later.
+            // Bun no need a workspace file, so we don't need to generate anything for it.
         }
     }
 

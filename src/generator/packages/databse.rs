@@ -7,6 +7,8 @@ use crate::{
 
 static DATABASE_TEMPLATE: Dir<'_> = include_dir!("$CARGO_MANIFEST_DIR/templates/packages/database");
 static PRISMA_TEMPLATE: Dir<'_> = include_dir!("$CARGO_MANIFEST_DIR/templates/db-providers/prisma");
+static DRIZZLE_TEMPLATE: Dir<'_> =
+    include_dir!("$CARGO_MANIFEST_DIR/templates/db-providers/drizzle");
 
 pub fn generate_database_package(
     config: &ProjectConfig,
@@ -21,7 +23,7 @@ pub fn generate_database_package(
             extract_dir(&PRISMA_TEMPLATE, &destination, context)?;
         }
         DatabaseProvider::Drizzle => {
-            // Handle Drizzle-specific template later
+            extract_dir(&DRIZZLE_TEMPLATE, &destination, context)?;
         }
     }
 

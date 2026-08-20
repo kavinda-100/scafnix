@@ -41,13 +41,19 @@ impl ProjectCommands {
                 format!("bun --filter {database_package} db:reset"),
             ),
 
-            (PackageManager::Pnpm, DatabaseProvider::Drizzle) => {
-                todo!("Drizzle commands are not implemented yet")
-            }
+            (PackageManager::Pnpm, DatabaseProvider::Drizzle) => (
+                format!("pnpm --filter {database_package} db:generate"),
+                format!("pnpm --filter {database_package} db:push"),
+                format!("pnpm --filter {database_package} db:studio"),
+                format!("pnpm --filter {database_package} db:reset"),
+            ),
 
-            (PackageManager::Bun, DatabaseProvider::Drizzle) => {
-                todo!("Drizzle commands are not implemented yet")
-            }
+            (PackageManager::Bun, DatabaseProvider::Drizzle) => (
+                format!("bun --filter {database_package} db:generate"),
+                format!("bun --filter {database_package} db:push"),
+                format!("bun --filter {database_package} db:studio"),
+                format!("bun --filter {database_package} db:reset"),
+            ),
         };
 
         Self {
