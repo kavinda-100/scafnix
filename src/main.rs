@@ -17,11 +17,11 @@ fn main() -> anyhow::Result<()> {
 
     let config = collect_project_config()?;
 
-    print_separator();
+    print_separator(Some(true));
 
     generate_project(&config)?;
 
-    print_separator();
+    print_separator(None);
 
     print_last_message(&config);
 
