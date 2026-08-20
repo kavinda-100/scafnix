@@ -10,11 +10,18 @@ use generator::project::generate_project;
 
 use crate::{
     cli::{args::Cli, prompts::collect_project_config},
-    ui::{banner::print_banner, last_message::print_last_message, seperater::print_separator},
+    ui::{
+        banner::print_banner, last_message::print_last_message, notes::print_notes,
+        seperater::print_separator,
+    },
 };
 
 fn main() -> anyhow::Result<()> {
     print_banner();
+
+    print_notes();
+
+    print_separator(Some(true));
 
     let cli = Cli::parse();
 

@@ -10,7 +10,7 @@ pub fn print_banner() {
     |____/ \___\__,_|_| |_| |_|_/_/\_\
     "#;
 
-    println!("{}", banner.green().bold());
+    println!("{}", banner.cyan().bold());
     println!(
         "{} {}",
         "🛡".green(),
