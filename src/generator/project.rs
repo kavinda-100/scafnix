@@ -1,5 +1,5 @@
 use crate::{
-    config::project::ProjectConfig,
+    config::{commands::ProjectCommands, project::ProjectConfig},
     generator::{
         apps::api_framework::generate_apps_api_framework,
         base::generate_base,
@@ -17,8 +17,24 @@ use crate::{
 };
 
 pub fn generate_project(config: &ProjectConfig) -> anyhow::Result<()> {
+    let commands = ProjectCommands::new(
+        &config.package_manager,
+        &config.database_provider,
+        &config.name,
+    );
+
     let context = TemplateContext {
         project_name: config.name.clone(),
+
+        start_command: commands.start,
+        predev_command: commands.predev,
+        dev_command: commands.dev,
+        build_command: commands.build,
+
+        db_generate_command: commands.db_generate,
+        db_push_command: commands.db_push,
+        db_studio_command: commands.db_studio,
+        db_reset_command: commands.db_reset,
     };
 
     // -- Generate project structure and files --

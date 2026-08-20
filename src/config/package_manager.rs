@@ -29,6 +29,38 @@ impl PackageManager {
             Self::Bun => &["update", "--latest"],
         }
     }
+
+    pub fn start_command(&self) -> &'static str {
+        match self {
+            Self::Pnpm => r#"pnpm --parallel --filter \"./apps/*\" start"#,
+            Self::Bun => r#"bun --filter \"./apps/*\" start"#,
+        }
+    }
+
+    pub fn predev_command(&self) -> &'static str {
+        match self {
+            Self::Pnpm => r#"pnpm --filter \"./packages/*\" build"#,
+            Self::Bun => r#"bun --filter \"./packages/*\" build"#,
+        }
+    }
+
+    pub fn dev_command(&self) -> &'static str {
+        match self {
+            Self::Pnpm => r#"pnpm --parallel --filter \"./apps/*\" dev"#,
+            Self::Bun => r#"bun --filter \"./apps/*\" dev"#,
+        }
+    }
+
+    pub fn build_command(&self) -> &'static str {
+        match self {
+            Self::Pnpm => {
+                r#"pnpm --filter \"./packages/*\" build && pnpm --filter \"./apps/*\" build"#
+            }
+            Self::Bun => {
+                r#"bun --filter \"./packages/*\" build && bun --filter \"./apps/*\" build"#
+            }
+        }
+    }
 }
 
 impl fmt::Display for PackageManager {

@@ -9,6 +9,10 @@
     "typescript",
     "backend"
   ],
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "start": "{{start_command}}",
     "predev": "{{predev_command}}",
