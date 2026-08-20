@@ -14,7 +14,9 @@ pub fn print_banner() {
     println!(
         "{} {}",
         "🛡".green(),
-        "CLI tool to generate your monorepo".italic().white()
+        "CLI tool to generate your TypeScript monorepo"
+            .italic()
+            .white()
     );
     println!(
         "{}\n",
