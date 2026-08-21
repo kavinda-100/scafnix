@@ -10,9 +10,9 @@ pub fn print_notes() {
     );
     println!(
         "{} {} {}",
-        "for now CLI only support".italic().white(),
+        "For now, CLI only supports".italic().white(),
         "postgresql".italic().cyan().bold(),
-        "databse. you can manualy change it to your databse of choice."
+        "database. You can manually change it to your database of choice."
             .italic()
             .white()
     )
