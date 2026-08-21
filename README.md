@@ -18,7 +18,7 @@ Run Scafnix without arguments and answer the prompts:
 scafnix
 ```
 
-You will be asked for the project name, package manager, API framework, database provider, whether to install dependencies, and whether to initialize Git.
+You will be asked for the project name, package manager, API framework, ORM provider, whether to install dependencies, and whether to initialize Git.
 
 ### Inline arguments and AI agents
 
@@ -28,7 +28,7 @@ For automation and AI agents, provide configuration directly on the command line
 scafnix my-api \
   --package-manager pnpm \
   --api express \
-  --database prisma \
+  --orm prisma \
   --no-install \
   --no-git
 ```
@@ -46,7 +46,7 @@ scafnix [OPTIONS] [PROJECT_NAME]
 
   -p, --package-manager <pnpm|bun>
   -a, --api <express>
-  -d, --database <prisma|drizzle>
+  -o, --orm <prisma|drizzle>
       --no-install
       --no-git
   -y, --yes
