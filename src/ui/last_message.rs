@@ -25,6 +25,14 @@ pub fn print_last_message(config: &ProjectConfig) {
         "  {}",
         format!("cd {}", config.destination.display()).cyan()
     );
+    println!(
+        "  {} {} {} {} {}",
+        "create".bright_black(),
+        ".env".cyan().bold(),
+        "file and add environment variables based on".bright_black(),
+        "env.example ".cyan().bold(),
+        "file.".bright_black()
+    );
 
     if !config.install_dependencies {
         println!("  {}", format!("{} install", package_manager).cyan());
