@@ -6,7 +6,7 @@ Use Scafnix interactively when you want guidance, or pass every option inline wh
 
 ## Installation
 
-> Coming soon. Scafnix has not been published yet.
+Download the latest version of Scafnix from the [GitHub Releases page](https://github.com/kavinda-100/scafnix/releases).
 
 ## Usage
 
