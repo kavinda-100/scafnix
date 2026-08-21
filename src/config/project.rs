@@ -1,7 +1,7 @@
 use std::path::PathBuf;
 
 use super::api_framework::ApiFramework;
-use super::database_provider::DatabaseProvider;
+use super::orm_provider::OrmProvider;
 use super::package_manager::PackageManager;
 
 #[allow(dead_code)]
@@ -11,7 +11,7 @@ pub struct ProjectConfig {
     pub destination: PathBuf,
     pub package_manager: PackageManager,
     pub api_framework: ApiFramework,
-    pub database_provider: DatabaseProvider,
+    pub orm_provider: OrmProvider,
     pub install_dependencies: bool,
     pub initialize_git: bool,
 }

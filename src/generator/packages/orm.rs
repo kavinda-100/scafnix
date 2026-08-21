@@ -1,16 +1,17 @@
 use include_dir::{Dir, include_dir};
 
 use crate::{
-    config::{database_provider::DatabaseProvider, project::ProjectConfig},
+    config::{orm_provider::OrmProvider, project::ProjectConfig},
     template::{extractor::extract_dir, renderer::TemplateContext},
 };
 
 static DATABASE_TEMPLATE: Dir<'_> = include_dir!("$CARGO_MANIFEST_DIR/templates/packages/database");
-static PRISMA_TEMPLATE: Dir<'_> = include_dir!("$CARGO_MANIFEST_DIR/templates/db-providers/prisma");
+static PRISMA_TEMPLATE: Dir<'_> =
+    include_dir!("$CARGO_MANIFEST_DIR/templates/orm-providers/prisma");
 static DRIZZLE_TEMPLATE: Dir<'_> =
-    include_dir!("$CARGO_MANIFEST_DIR/templates/db-providers/drizzle");
+    include_dir!("$CARGO_MANIFEST_DIR/templates/orm-providers/drizzle");
 
-pub fn generate_database_package(
+pub fn generate_database_orm_package(
     config: &ProjectConfig,
     context: &TemplateContext,
 ) -> anyhow::Result<()> {
@@ -18,11 +19,11 @@ pub fn generate_database_package(
 
     extract_dir(&DATABASE_TEMPLATE, &destination, context)?;
 
-    match config.database_provider {
-        DatabaseProvider::Prisma => {
+    match config.orm_provider {
+        OrmProvider::Prisma => {
             extract_dir(&PRISMA_TEMPLATE, &destination, context)?;
         }
-        DatabaseProvider::Drizzle => {
+        OrmProvider::Drizzle => {
             extract_dir(&DRIZZLE_TEMPLATE, &destination, context)?;
         }
     }

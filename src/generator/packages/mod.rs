@@ -1,3 +1,3 @@
 pub mod config;
-pub mod databse;
+pub mod orm;
 pub mod schema;

@@ -5,7 +5,7 @@ use crate::{
         base::generate_base,
         package_manager::generate_package_manager,
         packages::{
-            config::generate_config_package, databse::generate_database_package,
+            config::generate_config_package, orm::generate_database_orm_package,
             schema::generate_schema_package,
         },
         post_generation::{
@@ -18,11 +18,8 @@ use crate::{
 };
 
 pub fn generate_project(config: &ProjectConfig) -> anyhow::Result<()> {
-    let commands = ProjectCommands::new(
-        &config.package_manager,
-        &config.database_provider,
-        &config.name,
-    );
+    let commands =
+        ProjectCommands::new(&config.package_manager, &config.orm_provider, &config.name);
 
     let context = TemplateContext {
         project_name: config.name.clone(),
@@ -48,7 +45,7 @@ pub fn generate_project(config: &ProjectConfig) -> anyhow::Result<()> {
 
     generate_schema_package(config, &context)?;
 
-    generate_database_package(config, &context)?;
+    generate_database_orm_package(config, &context)?;
 
     generate_apps_api_framework(config, &context)?;
 

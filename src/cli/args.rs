@@ -1,15 +1,10 @@
 use crate::config::{
-    api_framework::ApiFramework, database_provider::DatabaseProvider,
-    package_manager::PackageManager,
+    api_framework::ApiFramework, orm_provider::OrmProvider, package_manager::PackageManager,
 };
 use clap::{Parser, ValueEnum};
 
 #[derive(Debug, Parser)]
-#[command(
-    name = "scafnix",
-    version,
-    about = "Generate a TypeScript backend monorepo"
-)]
+#[command(name = "scafnix", version, about = "Generate a TypeScript monorepo")]
 pub struct Cli {
     /// Name of the project
     pub project_name: Option<String>,
@@ -22,9 +17,9 @@ pub struct Cli {
     #[arg(short = 'a', long = "api")]
     pub api_framework: Option<CliApiFramework>,
 
-    /// Database provider to use
-    #[arg(short = 'd', long = "database")]
-    pub database_provider: Option<CliDatabaseProvider>,
+    /// ORM provider to use
+    #[arg(short = 'o', long = "orm")]
+    pub orm_provider: Option<CliOrmProvider>,
 
     /// Skip dependency installation
     #[arg(long)]
@@ -51,7 +46,7 @@ pub enum CliApiFramework {
 }
 
 #[derive(Debug, Clone, Copy, ValueEnum)]
-pub enum CliDatabaseProvider {
+pub enum CliOrmProvider {
     Prisma,
     Drizzle,
 }
@@ -73,11 +68,11 @@ impl From<CliApiFramework> for ApiFramework {
     }
 }
 
-impl From<CliDatabaseProvider> for DatabaseProvider {
-    fn from(value: CliDatabaseProvider) -> Self {
+impl From<CliOrmProvider> for OrmProvider {
+    fn from(value: CliOrmProvider) -> Self {
         match value {
-            CliDatabaseProvider::Prisma => Self::Prisma,
-            CliDatabaseProvider::Drizzle => Self::Drizzle,
+            CliOrmProvider::Prisma => Self::Prisma,
+            CliOrmProvider::Drizzle => Self::Drizzle,
         }
     }
 }

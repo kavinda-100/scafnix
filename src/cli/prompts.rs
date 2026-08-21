@@ -5,8 +5,8 @@ use inquire::{Confirm, Select, Text};
 use crate::{
     cli::args::Cli,
     config::{
-        api_framework::ApiFramework, database_provider::DatabaseProvider,
-        package_manager::PackageManager, project::ProjectConfig,
+        api_framework::ApiFramework, orm_provider::OrmProvider, package_manager::PackageManager,
+        project::ProjectConfig,
     },
 };
 
@@ -39,14 +39,14 @@ pub fn collect_project_config(cli: Cli) -> anyhow::Result<ProjectConfig> {
         None => Select::new("API framework:", vec![ApiFramework::Express]).prompt()?,
     };
 
-    let database_provider = match cli.database_provider {
+    let orm_provider = match cli.orm_provider {
         Some(value) => value.into(),
 
-        None if cli.yes => DatabaseProvider::Prisma,
+        None if cli.yes => OrmProvider::Prisma,
 
         None => Select::new(
-            "Database provider:",
-            vec![DatabaseProvider::Prisma, DatabaseProvider::Drizzle],
+            "ORM provider:",
+            vec![OrmProvider::Prisma, OrmProvider::Drizzle],
         )
         .prompt()?,
     };
@@ -76,7 +76,7 @@ pub fn collect_project_config(cli: Cli) -> anyhow::Result<ProjectConfig> {
         destination: PathBuf::from(&project_name),
         package_manager,
         api_framework,
-        database_provider,
+        orm_provider,
         install_dependencies,
         initialize_git,
     })
